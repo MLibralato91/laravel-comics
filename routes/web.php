@@ -14,5 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
-});
+    $data = [
+        'products' => config('db.products')
+    ];
+    return view('home', $data);
+})->name('home');
+
+Route::get('/recipes', function () {
+    $title = 'Comics List';
+    return view('recipes.index', compact('title'));
+})->name('recipes.index');
