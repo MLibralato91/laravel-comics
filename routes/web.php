@@ -24,3 +24,19 @@ Route::get('/recipes', function () {
     $title = 'Comics List';
     return view('recipes.index', compact('title'));
 })->name('recipes.index');
+
+
+Route::get('/products/{id}', function ($id) {
+
+    $products = config('db.products');
+    if ($id >= 0 && $id < count($products)) {
+        $product = $products[$id];
+        return view('products.show', compact('product'));
+    } else {
+        abort('404');
+    }
+
+
+    //dd(config('db.pro ducts'));
+
+})->name('products.show');
